@@ -39,6 +39,16 @@ public class CustomRoute {
 
                                 .filter(authorizationHeaderFilter.apply(new AuthorizationHeaderFilter.Config())))
                         .uri("lb://PaymentService"))
+                .route(r -> r.path("/OrderService/**")
+                        .filters(f->f
+
+                                .filter(authorizationHeaderFilter.apply(new AuthorizationHeaderFilter.Config())))
+                        .uri("lb://OrderService"))
+                .route(r -> r.path("/StockService/**")
+                        .filters(f->f
+
+                                .filter(authorizationHeaderFilter.apply(new AuthorizationHeaderFilter.Config())))
+                        .uri("lb://StockService"))
                 .build();
     }
 }
